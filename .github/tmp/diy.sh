@@ -46,6 +46,10 @@ svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mac8021
 svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
 svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/network/services/hostapd package/network/services/hostapd
 
+#package/libs/openssl 1.1.1
+rm -rf package/libs/openssl
+svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/libs/openssl ./package/libs/openssl
+
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
