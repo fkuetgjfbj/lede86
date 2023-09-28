@@ -455,13 +455,13 @@ VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
-date1="${CONFIG_S}-VIP-${DATA}_by_Sirpdboy"
+date1="VIP-${CONFIG_S}-${DATA}_by_Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
-date2="EzOpWrt ${CONFIG_S}-VIP-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
+date2="EzOpWrt VIP-${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
 elif [ "$VER1" = "5.15" ]; then
-date2="EzOpWrt ${CONFIG_S}-VIP-${DATA}-${VER1}.${ver515}_by_Sirpdboy"
+date2="EzOpWrt VIP-${CONFIG_S}-${DATA}-${VER1}.${ver515}_by_Sirpdboy"
 elif [ "$VER1" = "6.1" ]; then
-date2="EzOpWrt ${CONFIG_S}-VIP-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
+date2="EzOpWrt VIP-${CONFIG_S}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
 fi
 echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
