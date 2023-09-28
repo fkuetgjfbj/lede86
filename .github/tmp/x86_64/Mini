@@ -219,6 +219,8 @@ CONFIG_DOCKER_NET_TFTP=y
 
 CONFIG_PACKAGE_iwinfo=y
 
+CONFIG_LUCI_LANG_en=y
+CONFIG_LUCI_LANG_zh-cn=y
 
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_default-settings=y
