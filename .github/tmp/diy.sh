@@ -48,12 +48,12 @@ xc=$(find package/ feeds/ -type d -name "qBittorrent-static" 2>/dev/null)
 xd=$(find package/ feeds/luci/applications/ -type d -name "luci-app-turboacc" 2>/dev/null)
 [[ -d $xd ]] && sed -i '/hw_flow/s/1/0/;/sfe_flow/s/1/0/;/sfe_bridge/s/1/0/' $xd/root/etc/config/turboacc
  
-rm -rf package/kernel/mac80211
-rm -rf package/kernel/mt76
-rm -rf package/network/services/hostapd
-svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mac80211 package/kernel/mac80211
-svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
-svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/network/services/hostapd package/network/services/hostapd
+#rm -rf package/kernel/mac80211
+#rm -rf package/kernel/mt76
+#rm -rf package/network/services/hostapd
+#svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mac80211 package/kernel/mac80211
+#svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
+#svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/network/services/hostapd package/network/services/hostapd
 
 #package/libs/openssl 1.1.1
 rm -rf package/libs/openssl
@@ -67,7 +67,7 @@ svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci/Makefile
+#sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci/Makefile
 # sed -i "s/luci-theme-bootstrap/luci-theme-$OP_THEME/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
 # sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
@@ -115,11 +115,11 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 mv -f  ./package/lean/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 
 # samba4
-rm -rf ./feeds/luci/applications/luci-app-samba4  ./package/other/up/luci-app-samba4
-mv -f  ./package/lean/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+#rm -rf ./feeds/luci/applications/luci-app-samba4  ./package/other/up/luci-app-samba4
+#mv -f  ./package/lean/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
-rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
-mv -f  ./package/lean/softethervpn5 ./feeds/packages/net/softethervpn5
+#rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
+#mv -f  ./package/lean/softethervpn5 ./feeds/packages/net/softethervpn5
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
 mv -f  ./package/leanluci-app-socat ./feeds/luci/applications/luci-app-socat
@@ -571,6 +571,5 @@ done
 exit
 EOF
 
-./scripts/feeds update -i
 cat  ./x86_64/${CONFIG_S}  > .config
-cat  ./x86_64/comm  >> .config
+#cat  ./x86_64/comm  >> .config
