@@ -569,5 +569,5 @@ done
 exit
 EOF
 
-cat  ./x86_64/${CONFIG_S}  > .config
-#cat  ./x86_64/comm  >> .config
+cat ./x86_64/${CONFIG_S} >> .config
+#cat ./x86_64/comm  >> .config
