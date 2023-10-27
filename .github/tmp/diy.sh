@@ -9,8 +9,9 @@ ENCRYPTION=psk2
 KEY=123456
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
-
-[[ -n $CONFIG_S ]] || CONFIG_S=Base-Mini
+# [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
+[[ -n $CONFIG_s ]] || CONFIG_S=Mini
+[[ -n $CONFIG_v ]] || CONFIG_S=Vip
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
@@ -515,10 +516,10 @@ rm -rf  ./package/diy/upnpd
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
-case "${CONFIG_S}" in
-Base-Plus)
+case "${CONFIG_s}" in
+Plus)
 ;;
-Base-Bypass)
+Bypass)
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 ;;
 Vip-Plus)
@@ -534,8 +535,8 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/
 ;;
 esac
 
-case "${CONFIG_S}" in
-"Vip"-*)
+case "${CONFIG_v}" in
+"Vip")
 #修改默认IP地址
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
@@ -546,7 +547,6 @@ mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
 mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 # Add Pandownload 
 svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
-
 ;;
 *)
 #修改默认IP地址
