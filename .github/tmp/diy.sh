@@ -178,16 +178,18 @@ sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
+rm -rf /packages/diy/smartdns
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
+rm -rf /packages/diy/luci-app-netdata
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
+rm -rf ./package/other/up/luci-app-arpbind
 svn export https://github.com/loso3000/other/trunk/up/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
-rm -rf ./package/other/up/luci-app-arpbind
 
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-dockerman
