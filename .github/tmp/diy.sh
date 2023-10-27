@@ -10,7 +10,7 @@ KEY=123456
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
-[[ -n $CONFIG_S ]] || CONFIG_S=Mini
+[[ -n $CONFIG_S ]] || CONFIG_S=Base-Mini
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
@@ -503,13 +503,20 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 
 # sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
 
+#upnp
+#rm -rf ./feeds/packages/net/miniupnpd
+#svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
+rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
+rm -rf  ./package/diy/upnpd
+
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
 case "${CONFIG_S}" in
-Plus)
+Base-Plus)
 ;;
-Bypass)
+Base-Bypass)
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 ;;
 Vip-Plus)
@@ -535,12 +542,6 @@ rm -rf ./feeds/luci/applications/luci-app-mwan3
 rm -rf ./feeds/packages/net/mwan3
 mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
 mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
-#upnp
-#rm -rf ./feeds/packages/net/miniupnpd
-#svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
-rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
-rm -rf  ./package/diy/upnpd
 # Add Pandownload 
 svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
 
@@ -586,16 +587,17 @@ cat>buildmd5.sh<<-\EOF
 rm -rf  bin/targets/x86/64/config.buildinfo
 rm -rf  bin/targets/x86/64/feeds.buildinfo
 rm -rf  bin/targets/x86/64/*x86-64-generic-kernel.bin
-rm -rf  bin/targets/x86/64/*x86-64-generic-squashfs-rootfs.img.gz
-rm -rf  bin/targets/x86/64/*x86-64-generic-rootfs.tar.gz
+rm -rf  bin/targets/x86/64/*x86-64-generic-squashfs-rootfs.*
+rm -rf  bin/targets/x86/64/*x86-64-generic-rootfs.*
 rm -rf  bin/targets/x86/64/*x86-64-generic.manifest
 rm -rf  bin/targets/x86/64/*.vmdk
 rm -rf  bin/targets/x86/64/sha256sums
 rm -rf  bin/targets/x86/64/version.buildinfo
-rm -rf bin/targets/x86/64/*x86-64-generic-ext4-rootfs.img.gz
-rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined-efi.img.gz
-rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined.img.gz
+rm -rf bin/targets/x86/64/*x86-64-generic-ext4-rootfs.*
+rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined-efi.*
+rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined.*
 rm -rf bin/targets/x86/64/profiles.json
+gzip *.img || true
 sleep 2
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
