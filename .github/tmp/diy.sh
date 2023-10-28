@@ -323,14 +323,16 @@ rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
 
 #bypass
-# rm -rf package/other/up/pass/luci-app-bypass 
+rm -rf package/other/up/pass/
 rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-bypass   package/feeds/packages/luci-app-bypass 
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
+
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' package/bypass/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' package/pass/luci-app-bypass/Makefile
+
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
-sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
+sed -i 's,default n,default y,g' package/pass/luci-app-ssr-plus/Makefile
 
 
 git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
