@@ -9,7 +9,7 @@ ENCRYPTION=psk2
 KEY=123456
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
-# [[ -n $CONFIG_SV ]] || CONFIG_S=Vip-Mini
+# [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
@@ -484,8 +484,8 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/
 ;;
 esac
 
-case "${CONFIG_V}" in
-"Vip")
+case "${CONFIG_S}" in
+"Vip"*)
 #修改默认IP地址
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 #upnp
@@ -526,13 +526,13 @@ VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
-date1="${CONFIG_SV}-${DATA}_by_Sirpdboy"
+date1="${CONFIG_S}-${DATA}_by_Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
-date2="EzOpWrt ${CONFIG_SV}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
 elif [ "$VER1" = "5.15" ]; then
-date2="EzOpWrt ${CONFIG_SV}-${DATA}-${VER1}.${ver515}_by_Sirpdboy"
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver515}_by_Sirpdboy"
 elif [ "$VER1" = "6.1" ]; then
-date2="EzOpWrt ${CONFIG_SV}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
 fi
 echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
