@@ -101,7 +101,7 @@ end
 
 local function update(url, file, type, file2)
 	local Num = 1
-	local refresh_cmd = "wget --no-check-certificate -q -O /tmp/ssr-update." .. type .. " " .. url
+	local refresh_cmd = "wget-ssl --no-check-certificate -q -O /tmp/ssr-update." .. type .. " " .. url
 	local sret = luci.sys.call(refresh_cmd)
 	if sret == 0 then
 		if type == "gfw_data" then
@@ -182,6 +182,11 @@ if args then
 	end
 	if args == "nfip_data" then
 		update(uci:get_first("shadowsocksr", "global", "nfip_url"), "/etc/ssrplus/netflixip.list", args)
+		os.exit(0)
+	end
+	if args == "mosdns" then
+		ret = luci.sys.exec("/bin/bash /usr/share/shadowsocksr/updatemosdns.sh")
+		log(ret, 0)
 		os.exit(0)
 	end
 else
