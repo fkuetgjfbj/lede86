@@ -596,7 +596,7 @@ bakkmodfile=./kmod.source
 nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
-#cp -rf ./package/other/patch/list.txt $bakkmodfile
+cp -rf ./package/other/patch/list.txt $bakkmodfile
 mkdir -p files/etc/uci-defaults/
 cp -rf ./package/other/patch/init-settings.sh files/etc/uci-defaults/99-init-settings
 [ -f files/etc/uci-defaults/99-init-settings ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/init-settings.sh > files/etc/uci-defaults/99-init-settings
