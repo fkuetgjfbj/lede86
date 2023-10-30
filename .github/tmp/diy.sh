@@ -350,11 +350,20 @@ rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-
 rm -rf ./feeds/luci/applications/luci-app-bypass   package/feeds/packages/luci-app-bypass 
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
 
+#bypass
+rm -rf ./feeds/luci/applications/luci-app-ssr-plus
+svn export https://github.com/loso3000/other/trunk/up/pass ./package/pass
+rm ./package/pass/luci-app-bypass/po/zh_Hans
+mv ./package/pass/luci-app-bypass/po/zh-cn ./package/pass/luci-app-bypass/po/zh_Hans
+rm ./package/pass/luci-app-ssr-plus/po/zh_Hans
+mv ./package/pass/luci-app-ssr-plus/po/zh-cn ./package/pass/luci-app-ssr-plus/po/zh_Hans
+
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/pass/luci-app-bypass/Makefile
 
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' package/pass/luci-app-ssr-plus/Makefile
+
 
 
 git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
